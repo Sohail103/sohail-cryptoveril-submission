@@ -10,9 +10,10 @@ module cryptoveril (
     wire ld, start;
     wire [15:0] stg1_out;
     wire [16:0] stg2_out;
-    wire stg1_done, stg2done;
+    wire stg1_done, stg2_done;
 
-    stage1 stg1(clk1,
+    stage1 stg1(
+    clk1,
     rst,
     key_bits,
     input_data,
@@ -21,7 +22,8 @@ module cryptoveril (
     stg1_done,
     stg1_out);
 
-    stage2 stg2(clk2,
+    stage2 stg2(
+    clk2,
     rst,
     key_bits,
     stg1_out,
@@ -35,5 +37,7 @@ module cryptoveril (
         stg2_out,
         stg3_out
     );
+
+
 
 endmodule
