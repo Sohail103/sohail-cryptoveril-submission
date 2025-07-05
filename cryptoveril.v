@@ -5,9 +5,10 @@ module cryptoveril (
     input wire rst,      // Global reset
     input wire [15:0] input_data, // Input data
     input wire [4:0] key_bits,    // 6-bit key
-    output wire [15:0] output_data // Final result
+    output wire [15:0] output_data, // Final result
+    input wire start
 );
-    wire ld, start;
+    reg ld;
     wire [15:0] stg1_out;
     wire [16:0] stg2_out;
     wire stg1_done, stg2_done;
@@ -20,7 +21,8 @@ module cryptoveril (
     ld,
     start,
     stg1_done,
-    stg1_out);
+    stg1_out
+    );
 
     stage2 stg2(
     clk2,
@@ -29,7 +31,8 @@ module cryptoveril (
     stg1_out,
     stg1_done,
     stg2_done,
-    stg2_out);
+    stg2_out
+    );
 
     stage3 stg3(
         clk3,
@@ -38,6 +41,13 @@ module cryptoveril (
         stg3_out
     );
 
-
+    always @(*)
+    begin
+        if(start)
+        begin
+            ld <= 1'b1;
+        end
+        else if 
+    end
 
 endmodule
