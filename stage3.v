@@ -5,9 +5,5 @@ module stage3(
     output wire [15:0] stg3_out
 );
 
-always @(*)
-begin
-    if(rst) stg3_out <= 16'b0;
-    else stg3_out <= stg2_out[16:1];
-end
+assign stg3_out = stg2_out[16:1];
 endmodule
