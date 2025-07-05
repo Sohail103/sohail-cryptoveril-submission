@@ -54,8 +54,8 @@ module cryptoveril_tb;
         rst = 1;
         start = 0;
         ld = 0;
-        input_data = 16'b1110000111100001;
-        key_bits = 5'b11010;
+        input_data = 16'b0000000011111111;
+        key_bits = 5'b11001;
 
         #20;
         rst = 0;
