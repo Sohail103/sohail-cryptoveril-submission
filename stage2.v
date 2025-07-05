@@ -22,8 +22,8 @@ module stage2(
             case(key_bits[1:0])
             2'b00: begin stg2_out[0] <= ~(^stg1_out); done<=1'b1; end
             2'b01: begin stg2_out[0] <= |stg1_out; done <= 1'b1; end
-            2'b10: begin stg2_out[0] <= &stg1_out; done <= 1'b1 end;
-            2'b11: begin stg2_out[0] <= |stg1_out; done <= 1'b1 end;
+            2'b10: begin stg2_out[0] <= &stg1_out; done <= 1'b1; end
+            2'b11: begin stg2_out[0] <= |stg1_out; done <= 1'b1; end
             endcase
         end
         end
