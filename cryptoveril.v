@@ -11,6 +11,7 @@ module cryptoveril (
     reg ld;
     wire [15:0] stg1_out;
     wire [16:0] stg2_out;
+    wire [15:0] stg3_out;
     wire stg1_done, stg2_done;
 
     stage1 stg1(
@@ -43,9 +44,10 @@ module cryptoveril (
 
     always @(*)
     begin
-        if(start) ld <= 1'b1;
-        else ld <= 1'b0;
-        output_data <= stg3_out[15:0];
+        if(start) ld = 1'b1;
+        else ld = 1'b0;
     end
+
+    assign output_data = stg3_out[15:0];
 
 endmodule
