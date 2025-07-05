@@ -43,11 +43,9 @@ module cryptoveril (
 
     always @(*)
     begin
-        if(start)
-        begin
-            ld <= 1'b1;
-        end
-        else if 
+        if(start) ld <= 1'b1;
+        else ld <= 1'b0;
+        output_data <= stg3_out[15:0];
     end
 
 endmodule
