@@ -16,7 +16,7 @@ module stage2(
         end
         else 
         begin
-        if(stg1_done)
+        if(stg1_done && !done)
         begin 
             stg2_out[16:1] <= stg1_out;
             case(key_bits[1:0])
