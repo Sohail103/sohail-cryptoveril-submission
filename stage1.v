@@ -25,7 +25,7 @@ module stage1(
                 shift_reg <= input_data;
                 done <= 1'b0;
             end 
-            else if (start & ~done) 
+            else if (start && !done) 
             begin
                 stg1_out <= (shift_reg << key_bits[4:2]) + 16'd3;
                 done <= 1'b1;
