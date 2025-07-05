@@ -1,18 +1,16 @@
 `timescale 1ns/1ps
 
 module cryptoveril_tb;
-    reg clk1, clk2, clk3, rst, start;
+    reg clk1, clk2, clk3, rst, start, ld;
     reg [15:0] input_data;
     reg [4:0] key_bits;
     wire [15:0] output_data;
 
-    // Internal signals to observe stage outputs
     wire [15:0] stg1_out;
     wire [16:0] stg2_out;
     wire [15:0] stg3_out;
     wire stg1_done, stg2_done;
 
-    // Instantiate DUT
     cryptoveril uut (
         .clk1(clk1),
         .clk2(clk2),
@@ -20,8 +18,9 @@ module cryptoveril_tb;
         .rst(rst),
         .input_data(input_data),
         .key_bits(key_bits),
-        .output_data(output_data),
-        .start(start)
+        .ld(ld),
+        .start(start),
+        .output_data(output_data)
     );
 
     // Probes for internal signals
@@ -49,24 +48,24 @@ module cryptoveril_tb;
         end
     end
 
-    // Stimulus
     initial begin
         $dumpfile("cryptoveril_tb.vcd");
         $dumpvars(0, cryptoveril_tb);
 
         rst = 1;
         start = 0;
+        ld = 0;
         input_data = 16'b0000000000000001;
-        key_bits = 5'b00110; // shift by 1, key_bits[1:0]=10
+        key_bits = 5'b00110;
 
         #20;
         rst = 0;
         #10;
-        start = 1;
+        ld = 1;    // pulse ld for one cycle
         #10;
-        start = 0;
+        ld = 0;
+        start = 1; // keep start high
 
-        // Wait for all stages to finish
         #200;
 
         $finish;

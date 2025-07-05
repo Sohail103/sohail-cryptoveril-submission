@@ -5,10 +5,10 @@ module cryptoveril (
     input wire rst,      // Global reset
     input wire [15:0] input_data, // Input data
     input wire [4:0] key_bits,    // 6-bit key
-    output wire [15:0] output_data, // Final result
-    input wire start
+    input wire ld,               
+    input wire start,
+    output wire [15:0] output_data // Final result
 );
-    reg ld;
     wire [15:0] stg1_out;
     wire [16:0] stg2_out;
     wire [15:0] stg3_out;
@@ -42,11 +42,6 @@ module cryptoveril (
         stg3_out
     );
 
-    always @(*)
-    begin
-        if(start) ld = 1'b1;
-        else ld = 1'b0;
-    end
 
     assign output_data = stg3_out[15:0];
 
